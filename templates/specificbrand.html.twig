@@ -1,0 +1,29 @@
+{{ include('components/header/header.html.twig') }}
+
+
+<div class=" w-full h-full my-2 bg-gradient-to-r from-neutral-200 to-neutral-200 flex px-4 ">
+        <div class=" w-1/2 h-96 text-center flex  self-center">
+            <div class="  self-center flex flex-col mx-auto ">
+                <p class=" text-3xl inline-block align-baseline self-center font-mono my-4"> VOTRE MARQUE PREFEREE:</p>
+                <p class=" text-3xl inline-block align-baseline self-center font-mono my-4">
+                     {{brand.getName}} 
+                </p>
+                <img src="{{brand.getUrl}}" class="h-36 w-48 self-center" >
+            </div>
+            
+        </div>
+        <div class="grid grid-cols-2 gap-px">
+        {% for product in allproducts %}
+        {% if product.getBrand == brand.getName %}
+        <div >
+            
+            <a href="{{ path('product_specific', {slug: product.getId}) }}"><img src="{{product.getUrl}}" class="w-96 h-60"></a>
+        </div>
+        {% endif %}
+        {% endfor %}
+        </div>
+        
+    </div>
+
+
+{{ include('components/footer/footer.html.twig') }}

@@ -1,0 +1,38 @@
+{{ include('components/header/header.html.twig') }}
+
+<div class=" w-full h-full my-2 bg-gradient-to-r from-neutral-200 to-neutral-200 flex px-4 ">
+        <div class=" w-1/2 h-96 text-center flex  self-center">
+            <div class=" h-2/3 self-center flex flex-col mx-auto ">
+                <p class=" text-3xl inline-block align-baseline self-center font-mono my-4"> VOTRE PROCHAINE PAIRE</p>
+                <p class=" text-3xl inline-block align-baseline self-center font-mono my-4">
+                    La {{shoe.getBrand}} {{shoe.getModel}} {{shoe.getName}}
+                </p>
+                <p class=" text-xl inline-block align-baseline self-center font-mono my-4">
+                    Actuellement au prix de  {{shoe.getPrice}} €
+                </p>
+                </div>
+            </div>
+            
+        <div class=" w-1/2 h-80  self-center mb-20 animate__animated animate__fadeInRight">
+             <img  src="{{shoe.getUrl}}" >
+        </div>
+    </div>
+
+ <div class="w-full   bg-slate-400 flex flex-col">
+        <div class="text center text-4xl py-4 mx-auto inline-block align-baseline self-center text-white">
+            DE LA MEME MARQUE:
+        </div>
+        <div class="grid grid-cols-3 gap-px  ">
+            {% for product in allproducts %}
+            {% if product.getBrand == shoe.getBrand and product.getId != shoe.getId %}
+            <div class=" ">
+            
+                <a href="{{ path('product_specific', {slug: product.getId}) }}"><img src="{{product.getUrl}}" class="w-fit h-fit"></a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>    
+
+
+{{ include('components/footer/footer.html.twig') }}

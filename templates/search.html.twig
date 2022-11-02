@@ -1,0 +1,18 @@
+{{ include('components/header/header.html.twig') }}
+
+<div class=" h-2/3 self-center flex flex-col mx-auto  w-full  my-20 flex justify-around">
+    <p class=" text-3xl inline-block align-baseline self-center font-mono my-4"> Voici les résultats pour votre recherche:</p>
+    
+    <div class="grid grid-cols-4 gap-px ">
+        {% for product in allproducts %}
+        {% if product.getBrand == search or product.getModel == search or product.getName == search %}
+        <div >
+            
+            <a href="{{ path('product_specific', {slug: product.getId}) }}"><img src="{{product.getUrl}}" class="w-96 h-60"></a>
+        </div>
+        {% endif %}
+        {% endfor %}
+        </div>
+</div>
+
+{{ include('components/footer/footer.html.twig') }}

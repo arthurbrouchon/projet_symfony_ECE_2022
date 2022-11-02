@@ -1,0 +1,45 @@
+{{ include('components/header/headeradmin.html.twig') }}
+<div class="flex flex-col">
+    <div class=" text-4xl inline-block align-baseline self-center font-mono my-8  rounded-md px-2">
+        BIENVENUE SUR LA HOMEPAGE ADMIN
+    </div>
+
+    <div class="self-center">
+        <div class=" text-3xl inline-block align-baseline self-center font-mono my-4 bg-black rounded-md px-2 text-neutral-200">
+            <a href="{{path('product_new')}}">nouveau produit</a>
+        </div>
+        <div class=" text-3xl inline-block align-baseline self-center font-mono my-4 bg-black rounded-md px-2 text-neutral-200">
+            <a href="{{path('brand_new')}}">nouvelle marque</a>
+        </div>
+        
+    </div>    
+</div>
+
+{% for product in allproducts|reverse %}
+<div class="flex my-6">
+     <p>id: {{product.getId}}  produit:  {{product.getBrand}} {{product.getModel}} {{product.getName}} </p>  
+     
+    <a href="{{path('product_modif',{slug:product.getId})}} " class="text-xl underline ml-4">modif produit</a>
+
+    <a href="{{path('product_delete',{id:product.getId})}} " class="text-xl underline ml-4">delete</a>
+    
+</div>
+{% endfor %}
+
+<div class="h-16">
+</diV>
+
+{% for product in allbrands|reverse %}
+<div class="flex my-6">
+     <p>id: {{product.getId}} marque: {{product.getName}} </p>  
+     
+    <a href="{{path('brand_modif',{slug:product.getId})}} " class="text-xl underline ml-4">modif marque</a>
+
+    <a href="{{path('brand_delete',{id:product.getId})}} " class="text-xl underline ml-4">delete</a>
+    
+</div>
+{% endfor %}
+
+
+
+{{ include('components/footer/footer.html.twig') }}
